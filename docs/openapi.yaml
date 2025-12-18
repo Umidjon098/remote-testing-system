@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: Remote Testing System (MVP)
+  version: 0.1.0
+  description: |
+    Minimal API surface described for documentation purposes.
+    The implementation uses Next.js Server Actions + Supabase; endpoints below are conceptual.
+servers:
+  - url: http://localhost:3000
+paths:
+  /login:
+    get:
+      summary: Login page
+      responses:
+        "200": { description: OK }
+  /admin/tests:
+    get:
+      summary: List and create tests (admin)
+      responses:
+        "200": { description: OK }
+  /admin/tests/{testId}:
+    get:
+      summary: Edit test, questions, options, correct answers (admin)
+      parameters:
+        - in: path
+          name: testId
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200": { description: OK }
+  /admin/results:
+    get:
+      summary: View all attempts/results (admin)
+      responses:
+        "200": { description: OK }
+  /student/tests:
+    get:
+      summary: List available tests (student)
+      responses:
+        "200": { description: OK }
+  /student/tests/{testId}:
+    get:
+      summary: View test info and start attempt (student)
+      parameters:
+        - in: path
+          name: testId
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200": { description: OK }
+  /student/attempts/{attemptId}:
+    get:
+      summary: Take test (timer + autosubmit)
+      parameters:
+        - in: path
+          name: attemptId
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200": { description: OK }
+  /student/results:
+    get:
+      summary: View own results (student)
+      responses:
+        "200": { description: OK }
+components:
+  securitySchemes:
+    supabaseAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - supabaseAuth: []
