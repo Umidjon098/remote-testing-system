@@ -93,7 +93,7 @@ export default function AttemptRunner(props: {
                       {idx + 1}
                     </span>
                     <span className="text-sm font-medium text-slate-500">
-                      Question {idx + 1} of {props.questions.length}
+                      {idx + 1}-savol / {props.questions.length} ta
                     </span>
                   </div>
                   <p className="text-lg text-slate-900 leading-relaxed">
@@ -159,7 +159,7 @@ export default function AttemptRunner(props: {
             <Card variant="bordered" padding="md">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-slate-700">
-                  Time Remaining
+                  Qolgan vaqt
                 </span>
                 <div
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl font-mono text-lg font-bold ${
@@ -191,7 +191,7 @@ export default function AttemptRunner(props: {
             {/* Progress Card */}
             <Card variant="bordered" padding="md">
               <h3 className="text-sm font-medium text-slate-700 mb-4">
-                Your Progress
+                Sizning jarayoningiz
               </h3>
 
               <div className="grid grid-cols-8 gap-2 mb-4">
@@ -205,7 +205,7 @@ export default function AttemptRunner(props: {
                           ? "bg-emerald-50 border-emerald-500 text-emerald-700"
                           : "bg-slate-50 border-slate-200 text-slate-500"
                       }`}
-                      title={done ? "Answered" : "Not answered"}
+                      title={done ? "Javob berilgan" : "Javob berilmagan"}
                     >
                       {idx + 1}
                     </div>
@@ -218,13 +218,13 @@ export default function AttemptRunner(props: {
                   <div className="text-2xl font-bold text-slate-900">
                     {selectedCount}
                   </div>
-                  <div className="text-xs text-slate-600">Answered</div>
+                  <div className="text-xs text-slate-600">Javob berilgan</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-slate-900">
                     {unansweredCount}
                   </div>
-                  <div className="text-xs text-slate-600">Remaining</div>
+                  <div className="text-xs text-slate-600">Qolgan</div>
                 </div>
               </div>
             </Card>
@@ -238,10 +238,10 @@ export default function AttemptRunner(props: {
                 onClick={() => submit(false)}
                 disabled={pending || remainingMs === 0}
               >
-                {pending ? "Submitting..." : "Submit Test"}
+                {pending ? "Yuborilmoqda..." : "Testni yakunlash"}
               </Button>
               <p className="text-xs text-center text-slate-500 mt-3">
-                Make sure you&apos;ve answered all questions
+                Barcha savollarga javob berganingizga ishonch hosil qiling
               </p>
             </Card>
           </div>

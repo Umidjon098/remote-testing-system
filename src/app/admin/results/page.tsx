@@ -44,13 +44,13 @@ export default async function AdminResultsPage() {
   return (
     <div>
       <PageHeader
-        title="Student Results"
-        description="View and analyze student test attempts"
+        title="O'quvchilar natijalari"
+        description="O'quvchilarning test urinishlarini ko'ring va tahlil qiling"
       />
 
       <div className="mb-4 p-3 rounded-xl bg-blue-50 border border-blue-200">
         <p className="text-sm text-blue-800">
-          Showing the last 200 test attempts
+          Oxirgi 200 ta test urinishi ko'rsatilmoqda
         </p>
       </div>
 
@@ -60,22 +60,22 @@ export default async function AdminResultsPage() {
             <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Student
+                  O'quvchi
                 </th>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
                   Test
                 </th>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Status
+                  Holat
                 </th>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Score
+                  Ball
                 </th>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Started
+                  Boshlangan
                 </th>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Finished
+                  Yakunlangan
                 </th>
               </tr>
             </thead>
@@ -91,17 +91,17 @@ export default async function AdminResultsPage() {
                   <td className="px-6 py-4">
                     {a.status === "completed" && (
                       <Badge variant="success" size="sm">
-                        Completed
+                        Yakunlangan
                       </Badge>
                     )}
                     {a.status === "in_progress" && (
                       <Badge variant="warning" size="sm">
-                        In Progress
+                        Jarayonda
                       </Badge>
                     )}
                     {a.status === "expired" && (
                       <Badge variant="danger" size="sm">
-                        Expired
+                        Muddati o'tgan
                       </Badge>
                     )}
                   </td>
@@ -144,9 +144,9 @@ export default async function AdminResultsPage() {
                           d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                         />
                       </svg>
-                      <p>No results yet</p>
+                      <p>Hali natijalar yo'q</p>
                       <p className="text-sm mt-1">
-                        Student attempts will appear here
+                        O'quvchilarning urinishlari shu yerda ko'rinadi
                       </p>
                     </div>
                   </td>

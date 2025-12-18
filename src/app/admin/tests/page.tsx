@@ -19,8 +19,8 @@ export default async function AdminTestsPage({
   return (
     <div>
       <PageHeader
-        title="Test Management"
-        description="Create and manage tests for your students"
+        title="Testlarni boshqarish"
+        description="O'quvchilaringiz uchun testlar yarating va boshqaring"
       />
 
       {error && (
@@ -32,20 +32,20 @@ export default async function AdminTestsPage({
       {/* Create Test Form */}
       <Card variant="bordered" padding="lg" className="mb-8">
         <h2 className="text-xl font-semibold text-slate-900 mb-6">
-          Create New Test
+          Yangi test yaratish
         </h2>
         <form action={createTestAction} className="space-y-4">
           <Input
             name="title"
-            label="Test Title"
-            placeholder="Enter test title"
+            label="Test nomi"
+            placeholder="Test nomini kiriting"
             required
           />
 
           <Textarea
             name="description"
-            label="Description"
-            placeholder="Describe what this test covers"
+            label="Tavsif"
+            placeholder="Bu test nimani qamrab olishini tasvirlang"
             rows={3}
           />
 
@@ -53,7 +53,7 @@ export default async function AdminTestsPage({
             <Input
               name="time_limit_seconds"
               type="number"
-              label="Time Limit (seconds)"
+              label="Vaqt chegarasi (soniyalar)"
               placeholder="600"
               min={1}
               defaultValue={600}
@@ -63,7 +63,7 @@ export default async function AdminTestsPage({
             <Input
               name="max_attempts"
               type="number"
-              label="Max Attempts"
+              label="Maksimal urinishlar"
               placeholder="1"
               min={1}
               defaultValue={1}
@@ -72,7 +72,7 @@ export default async function AdminTestsPage({
           </div>
 
           <Button type="submit" variant="primary" size="lg">
-            Create Test
+            Test yaratish
           </Button>
         </form>
       </Card>
@@ -81,10 +81,10 @@ export default async function AdminTestsPage({
       <Card variant="bordered" padding="none">
         <div className="p-6 border-b border-slate-200">
           <h2 className="text-xl font-semibold text-slate-900">
-            Existing Tests
+            Mavjud testlar
           </h2>
           <p className="text-slate-600 mt-1">
-            Manage and edit your created tests
+            Yaratilgan testlarni boshqaring va tahrirlang
           </p>
         </div>
 
@@ -93,19 +93,19 @@ export default async function AdminTestsPage({
             <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Title
+                  Nomi
                 </th>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Status
+                  Holat
                 </th>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Time Limit
+                  Vaqt chegarasi
                 </th>
                 <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">
-                  Max Attempts
+                  Maksimal urinishlar
                 </th>
                 <th className="text-right px-6 py-4 text-sm font-semibold text-slate-700">
-                  Actions
+                  Harakatlar
                 </th>
               </tr>
             </thead>
@@ -123,11 +123,11 @@ export default async function AdminTestsPage({
                   <td className="px-6 py-4">
                     {t.published ? (
                       <Badge variant="success" size="sm">
-                        Published
+                        Nashr qilingan
                       </Badge>
                     ) : (
                       <Badge variant="default" size="sm">
-                        Draft
+                        Qoralama
                       </Badge>
                     )}
                   </td>
@@ -139,13 +139,13 @@ export default async function AdminTestsPage({
                     <div className="flex items-center justify-end gap-2">
                       <Link href={`/admin/tests/${t.id}`}>
                         <Button variant="outline" size="sm">
-                          Edit
+                          Tahrirlash
                         </Button>
                       </Link>
                       <form action={deleteTestAction}>
                         <input type="hidden" name="test_id" value={t.id} />
                         <Button type="submit" variant="danger" size="sm">
-                          Delete
+                          O'chirish
                         </Button>
                       </form>
                     </div>
@@ -172,9 +172,9 @@ export default async function AdminTestsPage({
                           d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                         />
                       </svg>
-                      <p>No tests created yet</p>
+                      <p>Hali testlar yaratilmagan</p>
                       <p className="text-sm mt-1">
-                        Create your first test to get started
+                        Boshlash uchun birinchi testingizni yarating
                       </p>
                     </div>
                   </td>

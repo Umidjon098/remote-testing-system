@@ -21,13 +21,13 @@ export default async function Home() {
           {!user ? (
             <Link href="/login">
               <Button variant="outline" size="md">
-                Sign In
+                Kirish
               </Button>
             </Link>
           ) : (
             <Link href="/logout">
               <Button variant="ghost" size="md">
-                Logout
+                Chiqish
               </Button>
             </Link>
           )}
@@ -38,29 +38,29 @@ export default async function Home() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-6">
                 <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
-                Trusted by 10,000+ students worldwide
+                Dunyo bo'ylab 10,000+ talaba ishonadi
               </div>
 
               <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-                Master Your Tests,
+                Testlaringizni o'zlashtirasiz,
                 <br />
-                <span className="text-indigo-600">Achieve Excellence</span>
+                <span className="text-indigo-600">Mukammallikka erishing</span>
               </h1>
 
               <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
-                A smart, reliable platform designed for students and educational
-                institutions. Take tests with confidence, track progress, and
-                reach your goals.
+                Talabalar va ta'lim muassasalari uchun mo'ljallangan aqlli,
+                ishonchli platforma. Testlarni ishonch bilan topshiring,
+                rivojlanishingizni kuzating va maqsadlaringizga erishing.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/login">
                   <Button variant="primary" size="lg" className="min-w-50">
-                    Get Started Free
+                    Bepul boshlash
                   </Button>
                 </Link>
                 <Button variant="outline" size="lg" className="min-w-50">
-                  Watch Demo
+                  Demo ko'rish
                 </Button>
               </div>
 
@@ -83,11 +83,11 @@ export default async function Home() {
                     </svg>
                   </div>
                   <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                    Easy Test Solving
+                    Oson test yechish
                   </h3>
                   <p className="text-slate-600">
-                    Clean, distraction-free interface designed for focus and
-                    efficiency
+                    Diqqat va samaradorlik uchun toza, chalg'itmaydigan
+                    interfeys
                   </p>
                 </div>
 
@@ -108,10 +108,11 @@ export default async function Home() {
                     </svg>
                   </div>
                   <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                    Time Control
+                    Vaqt nazorati
                   </h3>
                   <p className="text-slate-600">
-                    Real-time timer and progress tracking keeps you on pace
+                    Real vaqtda taymer va jarayon kuzatuvi sizni o'z tempoizda
+                    ushlab turadi
                   </p>
                 </div>
 
@@ -132,10 +133,11 @@ export default async function Home() {
                     </svg>
                   </div>
                   <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                    Clear Progress
+                    Aniq taraqqiyot
                   </h3>
                   <p className="text-slate-600">
-                    Instant results and detailed analytics to track improvement
+                    Yaxshilanishni kuzatish uchun tezkor natijalar va batafsil
+                    tahlil
                   </p>
                 </div>
               </div>
@@ -159,11 +161,11 @@ export default async function Home() {
               </div>
 
               <h1 className="text-4xl font-bold text-slate-900 mb-4">
-                Welcome back!
+                Xush kelibsiz!
               </h1>
 
               <p className="text-lg text-slate-600 mb-8">
-                Signed in as{" "}
+                Tizimga kirgan:{" "}
                 <span className="font-medium text-slate-900">
                   {user.email ?? user.id}
                 </span>
@@ -173,19 +175,19 @@ export default async function Home() {
                 {role === "admin" ? (
                   <Link href="/admin/tests">
                     <Button variant="primary" size="lg" className="min-w-50">
-                      Admin Dashboard
+                      Admin paneli
                     </Button>
                   </Link>
                 ) : (
                   <Link href="/student/tests">
                     <Button variant="primary" size="lg" className="min-w-50">
-                      Student Dashboard
+                      Talaba paneli
                     </Button>
                   </Link>
                 )}
                 <Link href="/logout">
                   <Button variant="outline" size="lg" className="min-w-50">
-                    Logout
+                    Chiqish
                   </Button>
                 </Link>
               </div>

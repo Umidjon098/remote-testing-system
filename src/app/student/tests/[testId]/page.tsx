@@ -41,13 +41,13 @@ export default async function StudentTestDetailPage({
               </svg>
             </div>
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
-              Test Not Found
+              Test topilmadi
             </h2>
             <p className="text-slate-600 mb-6">
-              This test is not available or has been unpublished.
+              Bu test mavjud emas yoki nashr qilinmagan.
             </p>
             <Link href="/student/tests">
-              <Button variant="primary">Back to Tests</Button>
+              <Button variant="primary">Testlarga qaytish</Button>
             </Link>
           </div>
         </Card>
@@ -80,7 +80,7 @@ export default async function StudentTestDetailPage({
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Back to Tests
+            Testlarga qaytish
           </Button>
         </Link>
       </div>

@@ -23,11 +23,11 @@ export default async function StudentResultsPage() {
   return (
     <div>
       <PageHeader
-        title="My Results"
-        description="View your test history and scores"
+        title="Mening natijalarim"
+        description="Test tarixingiz va ballaringizni ko'ring"
         actions={
           <Link href="/student/tests">
-            <Button variant="outline">Back to Tests</Button>
+            <Button variant="outline">Testlarga qaytish</Button>
           </Link>
         }
       />
@@ -45,17 +45,17 @@ export default async function StudentResultsPage() {
                   <span>•</span>
                   {a.status === "in_progress" && (
                     <Badge variant="warning" size="sm">
-                      In Progress
+                      Jarayonda
                     </Badge>
                   )}
                   {a.status === "completed" && (
                     <Badge variant="success" size="sm">
-                      Completed
+                      Yakunlangan
                     </Badge>
                   )}
                   {a.status === "expired" && (
                     <Badge variant="danger" size="sm">
-                      Expired
+                      Muddati o'tgan
                     </Badge>
                   )}
                 </div>
@@ -64,7 +64,7 @@ export default async function StudentResultsPage() {
               <div className="flex items-center gap-3">
                 {a.score !== null && (
                   <div className="px-4 py-2 rounded-xl bg-slate-100 border border-slate-200">
-                    <div className="text-xs text-slate-600">Score</div>
+                    <div className="text-xs text-slate-600">Ball</div>
                     <div className="text-2xl font-bold text-slate-900">
                       {a.score}
                     </div>
@@ -72,7 +72,7 @@ export default async function StudentResultsPage() {
                 )}
                 {a.status === "in_progress" && (
                   <Link href={`/student/attempts/${a.id}`}>
-                    <Button variant="primary">Continue</Button>
+                    <Button variant="primary">Davom ettirish</Button>
                   </Link>
                 )}
               </div>
@@ -99,13 +99,13 @@ export default async function StudentResultsPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                No attempts yet
+                Hali urinishlar yo'q
               </h3>
               <p className="text-slate-600 mb-6">
-                Start taking tests to see your results here
+                Natijalaringizni ko'rish uchun testlarni yechishni boshlang
               </p>
               <Link href="/student/tests">
-                <Button variant="primary">Browse Tests</Button>
+                <Button variant="primary">Testlarni ko'rish</Button>
               </Link>
             </div>
           </Card>

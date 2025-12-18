@@ -49,13 +49,13 @@ export default async function AdminTestDetailPage({
               </svg>
             </div>
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
-              Test Not Found
+              Test topilmadi
             </h2>
             <p className="text-slate-600 mb-6">
-              This test doesn&apos;t exist or has been deleted.
+              Bu test mavjud emas yoki o'chirib yuborilgan.
             </p>
             <Link href="/admin/tests">
-              <Button variant="primary">Back to Tests</Button>
+              <Button variant="primary">Testlarga qaytish</Button>
             </Link>
           </div>
         </Card>
@@ -112,7 +112,7 @@ export default async function AdminTestDetailPage({
   return (
     <div>
       <PageHeader
-        title="Edit Test"
+        title="Testni tahrirlash"
         description={test.title}
         actions={
           <Link href="/admin/tests">
@@ -130,7 +130,7 @@ export default async function AdminTestDetailPage({
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              Back to Tests
+              Testlarga qaytish
             </Button>
           </Link>
         }
@@ -147,16 +147,16 @@ export default async function AdminTestDetailPage({
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-xl font-semibold text-slate-900">
-              Test Settings
+              Test sozlamalari
             </h2>
             <p className="text-sm text-slate-600 mt-1">
-              Configure test parameters and publish status
+              Test parametrlarini va nashr holatini sozlang
             </p>
           </div>
           {test.published ? (
-            <Badge variant="success">Published</Badge>
+            <Badge variant="success">Nashr qilingan</Badge>
           ) : (
-            <Badge variant="default">Draft</Badge>
+            <Badge variant="default">Qoralama</Badge>
           )}
         </div>
 
@@ -165,24 +165,24 @@ export default async function AdminTestDetailPage({
 
           <Input
             name="title"
-            label="Test Title"
+            label="Test nomi"
             defaultValue={test.title}
             required
           />
 
           <Textarea
             name="description"
-            label="Description"
+            label="Tavsif"
             defaultValue={test.description ?? ""}
             rows={3}
-            helperText="Describe what this test covers"
+            helperText="Bu test nimani qamrab olishini tasvirlang"
           />
 
           <div className="grid md:grid-cols-2 gap-4">
             <Input
               name="time_limit_seconds"
               type="number"
-              label="Time Limit (seconds)"
+              label="Vaqt chegarasi (soniyalar)"
               min={1}
               defaultValue={test.time_limit_seconds}
               required
@@ -191,7 +191,7 @@ export default async function AdminTestDetailPage({
             <Input
               name="max_attempts"
               type="number"
-              label="Max Attempts"
+              label="Maksimal urinishlar"
               min={1}
               defaultValue={test.max_attempts}
               required
@@ -211,16 +211,16 @@ export default async function AdminTestDetailPage({
                 htmlFor="published"
                 className="font-medium text-slate-900 cursor-pointer"
               >
-                Publish Test
+                Testni nashr qilish
               </label>
               <p className="text-sm text-slate-600">
-                Make this test visible to students
+                Bu testni o'quvchilarga ko'rinadigan qiling
               </p>
             </div>
           </div>
 
           <Button type="submit" variant="primary" size="lg">
-            Save Changes
+            O'zgarishlarni saqlash
           </Button>
         </form>
       </Card>
@@ -230,12 +230,9 @@ export default async function AdminTestDetailPage({
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-xl font-semibold text-slate-900">
-                Questions
-              </h2>
+              <h2 className="text-xl font-semibold text-slate-900">Savollar</h2>
               <p className="text-sm text-slate-600 mt-1">
-                {questions?.length || 0} question
-                {questions?.length !== 1 ? "s" : ""} created
+                {questions?.length || 0} ta savol yaratilgan
               </p>
             </div>
           </div>
@@ -245,7 +242,7 @@ export default async function AdminTestDetailPage({
             <input
               name="prompt"
               className="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all"
-              placeholder="Enter new question prompt..."
+              placeholder="Yangi savol matnini kiriting..."
               required
             />
             <Button type="submit" variant="primary">
@@ -262,7 +259,7 @@ export default async function AdminTestDetailPage({
                   d="M12 4v16m8-8H4"
                 />
               </svg>
-              Add Question
+              Savol qo'shish
             </Button>
           </form>
         </div>
@@ -281,7 +278,7 @@ export default async function AdminTestDetailPage({
                     </div>
                     <div className="flex-1">
                       <div className="text-sm text-slate-500 mb-1">
-                        Question {q.position + 1}
+                        {q.position + 1}-savol
                       </div>
                       <div className="text-lg font-medium text-slate-900">
                         {q.prompt}
@@ -312,11 +309,11 @@ export default async function AdminTestDetailPage({
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <h4 className="text-sm font-semibold text-slate-900">
-                      Answer Options
+                      Javob variantlari
                     </h4>
                     {selected && (
                       <Badge variant="success" size="sm">
-                        ✓ Correct answer set
+                        ✓ To'g'ri javob belgilangan
                       </Badge>
                     )}
                   </div>
@@ -376,10 +373,10 @@ export default async function AdminTestDetailPage({
                                       d="M5 13l4 4L19 7"
                                     />
                                   </svg>
-                                  Correct
+                                  To'g'ri
                                 </>
                               ) : (
-                                "Mark Correct"
+                                "To'g'ri deb belgilash"
                               )}
                             </Button>
                           </form>
@@ -431,7 +428,8 @@ export default async function AdminTestDetailPage({
                           />
                         </svg>
                         <p className="text-sm">
-                          No options yet. Add your first option below.
+                          Hali variantlar yo'q. Quyidagi formadan birinchi
+                          variantni qo'shing.
                         </p>
                       </div>
                     )}
@@ -443,7 +441,7 @@ export default async function AdminTestDetailPage({
                     <input
                       name="text"
                       className="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all"
-                      placeholder="Enter answer option..."
+                      placeholder="Javob variantini kiriting..."
                       required
                     />
                     <Button type="submit" variant="secondary">
@@ -460,7 +458,7 @@ export default async function AdminTestDetailPage({
                           d="M12 4v16m8-8H4"
                         />
                       </svg>
-                      Add Option
+                      Variant qo'shish
                     </Button>
                   </form>
                 </div>
@@ -487,10 +485,11 @@ export default async function AdminTestDetailPage({
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                  No questions yet
+                  Hali savollar yo'q
                 </h3>
                 <p className="text-slate-600">
-                  Add your first question using the form above to get started.
+                  Boshlash uchun yuqoridagi formadan birinchi savolingizni
+                  qo'shing.
                 </p>
               </div>
             </Card>
