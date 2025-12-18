@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabaseServiceClient } from "@/lib/supabase/service";
 import { revalidatePath } from "next/cache";
 
 export async function joinCompetitionAction(formData: FormData) {
@@ -142,21 +143,10 @@ export async function submitCompetitionAction(formData: FormData) {
   // Parse answers
   const answerMap = JSON.parse(answers) as Record<string, string>;
 
-  // Get competition with test info
+  // Get competition info
   const { data: competition } = await supabase
     .from("competitions")
-    .select(
-      `
-      id,
-      test:tests(
-        id,
-        questions(
-          id,
-          correct_option_id
-        )
-      )
-    `
-    )
+    .select("id, test_id")
     .eq("id", competitionId)
     .single();
 
@@ -164,15 +154,45 @@ export async function submitCompetitionAction(formData: FormData) {
     redirect("/student/competitions?error=Competition not found");
   }
 
-  // Calculate score
-  const testInfo = Array.isArray(competition.test)
-    ? competition.test[0]
-    : competition.test;
-  const questions = testInfo?.questions || [];
+  // Use service client to get questions and correct answers
+  const supabaseService = createSupabaseServiceClient();
 
+  const { data: questions, error: questionsError } = await supabaseService
+    .from("questions")
+    .select("id")
+    .eq("test_id", competition.test_id);
+
+  if (questionsError || !questions || questions.length === 0) {
+    console.error("Questions fetch error:", questionsError);
+    redirect(
+      `/student/competitions/${competitionId}?error=${encodeURIComponent(
+        questionsError?.message || "No questions found"
+      )}`
+    );
+  }
+
+  // Get correct answers
+  const { data: correctAnswers, error: correctError } = await supabaseService
+    .from("correct_options")
+    .select("question_id, option_id")
+    .in(
+      "question_id",
+      questions.map((q) => q.id)
+    );
+
+  if (correctError) {
+    console.error("Correct answers fetch error:", correctError);
+    redirect(
+      `/student/competitions/${competitionId}?error=${encodeURIComponent(
+        correctError.message
+      )}`
+    );
+  }
+
+  // Calculate score
   let score = 0;
-  questions.forEach((q) => {
-    if (answerMap[q.id] === q.correct_option_id) {
+  correctAnswers?.forEach((correct) => {
+    if (answerMap[correct.question_id] === correct.option_id) {
       score++;
     }
   });
