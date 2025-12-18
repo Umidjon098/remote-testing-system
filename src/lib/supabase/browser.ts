@@ -10,5 +10,36 @@ export function createSupabaseBrowserClient() {
     );
   }
 
-  return createBrowserClient(url, anonKey);
+  return createBrowserClient(url, anonKey, {
+    cookies: {
+      get(name: string) {
+        const value = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith(`${name}=`))
+          ?.split("=")[1];
+        return value ? decodeURIComponent(value) : null;
+      },
+      set(name: string, value: string, options: any) {
+        let cookie = `${name}=${encodeURIComponent(value)}`;
+
+        if (options?.maxAge) {
+          cookie += `; max-age=${options.maxAge}`;
+        }
+        if (options?.path) {
+          cookie += `; path=${options.path}`;
+        }
+        if (options?.sameSite) {
+          cookie += `; samesite=${options.sameSite}`;
+        }
+        if (options?.secure) {
+          cookie += `; secure`;
+        }
+
+        document.cookie = cookie;
+      },
+      remove(name: string, options: any) {
+        document.cookie = `${name}=; path=${options?.path || "/"}; max-age=0`;
+      },
+    },
+  });
 }
