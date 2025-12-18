@@ -7,10 +7,10 @@ import { submitCompetitionAction } from "../../actions";
 
 interface Question {
   id: string;
-  question_text: string;
+  prompt: string;
   options: Array<{
     id: string;
-    option_text: string;
+    text: string;
   }>;
 }
 
@@ -115,7 +115,7 @@ export function CompetitionRunner({
             Savol {currentQuestionIndex + 1}
           </div>
           <h3 className="text-xl font-semibold text-slate-900">
-            {currentQuestion.question_text}
+            {currentQuestion.prompt}
           </h3>
         </div>
 
@@ -160,7 +160,7 @@ export function CompetitionRunner({
                       isSelected ? "text-indigo-900" : "text-slate-900"
                     }`}
                   >
-                    {option.option_text}
+                    {option.text}
                   </span>
                 </div>
               </button>
@@ -171,22 +171,20 @@ export function CompetitionRunner({
 
       {/* Navigation */}
       <div className="flex items-center justify-between">
-        <div className="text-sm text-slate-600">
-          {!answers[currentQuestion.id] && (
-            <span className="text-amber-600">
-              ⚠️ Ushbu savolga javob bermadingiz
-            </span>
-          )}
-        </div>
+        <Button
+          onClick={() =>
+            setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))
+          }
+          variant="outline"
+          size="lg"
+          disabled={currentQuestionIndex === 0}
+        >
+          ← Oldingi
+        </Button>
 
         <div className="flex gap-3">
           {!isLastQuestion ? (
-            <Button
-              onClick={handleNext}
-              variant="primary"
-              size="lg"
-              disabled={!answers[currentQuestion.id]}
-            >
+            <Button onClick={handleNext} variant="primary" size="lg">
               Keyingi savol →
             </Button>
           ) : (

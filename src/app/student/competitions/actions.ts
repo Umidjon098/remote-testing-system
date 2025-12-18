@@ -39,12 +39,29 @@ export async function joinCompetitionAction(formData: FormData) {
   // Check competition status and participant limit
   const { data: competition } = await supabase
     .from("competitions")
-    .select("id, start_time, end_time, max_participants")
+    .select("id, start_time, end_time, max_participants, test_id")
     .eq("id", competitionId)
     .single();
 
   if (!competition) {
     redirect("/student/competitions?error=Competition not found");
+  }
+
+  // Check if user has already completed this test before
+  const { data: previousAttempt } = await supabase
+    .from("attempts")
+    .select("id")
+    .eq("test_id", competition.test_id)
+    .eq("student_id", user.id)
+    .not("submitted_at", "is", null)
+    .single();
+
+  if (previousAttempt) {
+    redirect(
+      `/student/competitions/${competitionId}?error=${encodeURIComponent(
+        "Siz bu testni avval bajargansiz. Musobaqaga faqat yangi ishtirokchilar qatnasha oladi."
+      )}`
+    );
   }
 
   const now = new Date();
@@ -84,6 +101,12 @@ export async function joinCompetitionAction(formData: FormData) {
   });
 
   if (error) {
+    // If already joined (duplicate key), redirect to attempt page
+    if (error.code === "23505") {
+      revalidatePath(`/student/competitions/${competitionId}`);
+      redirect(`/student/competitions/${competitionId}/attempt`);
+    }
+
     redirect(
       `/student/competitions/${competitionId}?error=${encodeURIComponent(
         error.message
@@ -92,6 +115,8 @@ export async function joinCompetitionAction(formData: FormData) {
   }
 
   revalidatePath(`/student/competitions/${competitionId}`);
+  revalidatePath(`/student/competitions/${competitionId}/attempt`);
+  revalidatePath("/student/competitions");
   redirect(`/student/competitions/${competitionId}/attempt`);
 }
 

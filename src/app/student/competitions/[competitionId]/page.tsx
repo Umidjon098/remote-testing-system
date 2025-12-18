@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { joinCompetitionAction } from "../actions";
 import { Button, Card } from "@/components/ui";
+import { JoinButton } from "./JoinButton";
 import {
   CompetitionStatusBadge,
   getCompetitionStatus,
@@ -98,6 +99,15 @@ export default async function CompetitionDetailPage({
     .select("*", { count: "exact", head: true })
     .eq("competition_id", competitionId);
 
+  // Check if user has completed this test before
+  const { data: previousAttempt } = await supabase
+    .from("attempts")
+    .select("id")
+    .eq("test_id", competition.test_id)
+    .eq("student_id", user.id)
+    .not("submitted_at", "is", null)
+    .single();
+
   const testInfo = Array.isArray(competition.test)
     ? competition.test[0]
     : competition.test;
@@ -107,9 +117,11 @@ export default async function CompetitionDetailPage({
     competition.end_time
   );
 
+  const hasPreviousAttempt = !!previousAttempt;
   const canJoin =
     status === "active" &&
     !participation &&
+    !hasPreviousAttempt &&
     (!competition.max_participants ||
       (totalParticipants || 0) < competition.max_participants);
 
@@ -245,16 +257,10 @@ export default async function CompetitionDetailPage({
                 Boshlash uchun ro&apos;yxatdan o&apos;ting
               </p>
             </div>
-            <form action={joinCompetitionAction}>
-              <input
-                type="hidden"
-                name="competition_id"
-                value={competitionId}
-              />
-              <Button type="submit" variant="primary" size="lg">
-                Qatnashish
-              </Button>
-            </form>
+            <JoinButton
+              competitionId={competitionId}
+              joinAction={joinCompetitionAction}
+            />
           </div>
         </Card>
       ) : canStart ? (
@@ -274,6 +280,17 @@ export default async function CompetitionDetailPage({
                 Boshlash
               </Button>
             </Link>
+          </div>
+        </Card>
+      ) : hasPreviousAttempt ? (
+        <Card variant="bordered" padding="lg" className="mb-8 bg-amber-50">
+          <div className="text-center py-6">
+            <h3 className="text-lg font-semibold text-amber-900 mb-2">
+              Siz bu testni avval bajargansiz
+            </h3>
+            <p className="text-amber-700">
+              Musobaqaga faqat yangi ishtirokchilar qatnasha oladi
+            </p>
           </div>
         </Card>
       ) : status === "upcoming" ? (

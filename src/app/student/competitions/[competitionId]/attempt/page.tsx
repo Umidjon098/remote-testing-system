@@ -1,5 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabaseServiceClient } from "@/lib/supabase/service";
 import { CompetitionRunner } from "./CompetitionRunner";
 
 interface PageProps {
@@ -36,28 +37,10 @@ export default async function CompetitionAttemptPage({ params }: PageProps) {
     redirect(`/student/competitions/${competitionId}/results`);
   }
 
-  // Fetch competition with test and questions
+  // Fetch competition basic info
   const { data: competition } = await supabase
     .from("competitions")
-    .select(
-      `
-      id,
-      start_time,
-      end_time,
-      test:tests(
-        id,
-        time_limit_seconds,
-        questions(
-          id,
-          question_text,
-          options(
-            id,
-            option_text
-          )
-        )
-      )
-    `
-    )
+    .select("id, start_time, end_time, test_id")
     .eq("id", competitionId)
     .single();
 
@@ -75,25 +58,57 @@ export default async function CompetitionAttemptPage({ params }: PageProps) {
     );
   }
 
-  const testInfo = Array.isArray(competition.test)
-    ? competition.test[0]
-    : competition.test;
+  // Fetch test basic info
+  const { data: test } = await supabase
+    .from("tests")
+    .select("id, time_limit_seconds")
+    .eq("id", competition.test_id)
+    .single();
 
-  const questions = testInfo?.questions || [];
+  if (!test) {
+    redirect(`/student/competitions/${competitionId}?error=Test not found`);
+  }
 
-  if (questions.length === 0) {
+  // Use service client to fetch questions (bypass RLS issues)
+  const supabaseService = createSupabaseServiceClient();
+
+  // Fetch questions without options first
+  const { data: questionsData } = await supabaseService
+    .from("questions")
+    .select("id, prompt")
+    .eq("test_id", competition.test_id);
+
+  if (!questionsData || questionsData.length === 0) {
     redirect(
       `/student/competitions/${competitionId}?error=No questions available`
     );
   }
 
+  // Fetch options for each question
+  const questionsWithOptions = await Promise.all(
+    questionsData.map(async (q) => {
+      const { data: options } = await supabaseService
+        .from("options")
+        .select("id, text")
+        .eq("question_id", q.id)
+        .order("position");
+
+      return {
+        ...q,
+        options: options || [],
+      };
+    })
+  );
+
   return (
-    <div className="max-w-4xl mx-auto">
-      <CompetitionRunner
-        competitionId={competitionId}
-        questions={questions}
-        timeLimitSeconds={testInfo?.time_limit_seconds || 600}
-      />
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 py-8">
+      <div className="max-w-4xl mx-auto px-4">
+        <CompetitionRunner
+          competitionId={competitionId}
+          questions={questionsWithOptions}
+          timeLimitSeconds={test.time_limit_seconds || 600}
+        />
+      </div>
     </div>
   );
 }

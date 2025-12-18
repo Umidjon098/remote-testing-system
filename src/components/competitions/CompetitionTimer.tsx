@@ -47,11 +47,11 @@ export function CompetitionTimer({
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <div className="sticky top-0 z-50 bg-white  border-slate-200 rounded-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           <div className="text-sm font-medium text-slate-700">
-            Musobaqa vaqti
+            Musobaqa vaqti:
           </div>
           <div
             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-mono text-lg font-bold border-2 ${getColorClass()}`}
