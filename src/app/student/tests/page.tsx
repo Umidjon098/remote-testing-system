@@ -24,20 +24,20 @@ export default async function StudentTestsPage() {
   return (
     <div>
       <PageHeader
-        title="Available Tests"
-        description="Choose a test to begin your assessment"
+        title="Mavjud testlar"
+        description="Baholashni boshlash uchun testni tanlang"
       />
 
       {/* Filters - Optional enhancement */}
       <div className="flex flex-wrap gap-2 mb-8">
         <Badge variant="primary" className="cursor-pointer">
-          All Tests
+          Barcha testlar
         </Badge>
         <Badge variant="default" className="cursor-pointer hover:bg-slate-200">
-          Recent
+          So'nggi
         </Badge>
         <Badge variant="default" className="cursor-pointer hover:bg-slate-200">
-          Popular
+          Mashhur
         </Badge>
       </div>
 
@@ -110,7 +110,7 @@ export default async function StudentTestsPage() {
                       d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                     />
                   </svg>
-                  <span className="text-sm">{t.max_attempts} attempts</span>
+                  <span className="text-sm">{t.max_attempts} urinish</span>
                 </div>
               </div>
             </CardContent>
@@ -119,12 +119,12 @@ export default async function StudentTestsPage() {
               <div className="flex gap-2 w-full">
                 <Link href={`/student/tests/${t.id}`} className="flex-1">
                   <Button variant="outline" size="md" fullWidth>
-                    Details
+                    Batafsil
                   </Button>
                 </Link>
                 <Link href={`/student/tests/${t.id}`} className="flex-1">
                   <Button variant="primary" size="md" fullWidth>
-                    Start Test
+                    Testni boshlash
                   </Button>
                 </Link>
               </div>
@@ -152,10 +152,10 @@ export default async function StudentTestsPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                  No tests available
+                  Testlar mavjud emas
                 </h3>
                 <p className="text-slate-600">
-                  Check back later for new tests to practice with
+                  Yangi testlar uchun keyinroq qaytib keling
                 </p>
               </div>
             </Card>

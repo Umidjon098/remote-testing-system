@@ -24,15 +24,15 @@ export default async function AdminLayout({
           </Logo>
         }
         navigation={[
-          { label: "Tests", href: "/admin/tests" },
+          { label: "Testlar", href: "/admin/tests" },
           { label: "Musobaqalar", href: "/admin/competitions" },
-          { label: "Results", href: "/admin/results" },
+          { label: "Natijalar", href: "/admin/results" },
         ]}
         actions={
           <>
             <Link href="/logout">
               <Button variant="ghost" size="sm">
-                Logout
+                Chiqish
               </Button>
             </Link>
           </>

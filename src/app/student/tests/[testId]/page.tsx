@@ -93,7 +93,7 @@ export default async function StudentTestDetailPage({
 
       <Card variant="elevated" padding="lg">
         <div className="flex items-start gap-4 mb-6">
-          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+          <div className="w-16 h-16 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0">
             <svg
               className="w-8 h-8 text-white"
               fill="none"
@@ -125,41 +125,45 @@ export default async function StudentTestDetailPage({
             <div className="text-2xl font-bold text-slate-900">
               {questionCount}
             </div>
-            <div className="text-sm text-slate-600">Questions</div>
+            <div className="text-sm text-slate-600">Savollar</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-slate-900">
               {Math.round(test.time_limit_seconds / 60)}
             </div>
-            <div className="text-sm text-slate-600">Minutes</div>
+            <div className="text-sm text-slate-600">Daqiqa</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-slate-900">
               {test.max_attempts}
             </div>
-            <div className="text-sm text-slate-600">Max Attempts</div>
+            <div className="text-sm text-slate-600">Maksimal urinishlar</div>
           </div>
         </div>
 
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
           <h3 className="font-semibold text-blue-900 mb-2">
-            Before you begin:
+            Boshlashdan oldin:
           </h3>
           <ul className="text-sm text-blue-800 space-y-1">
-            <li>• Make sure you have a stable internet connection</li>
             <li>
-              • You&apos;ll have {Math.round(test.time_limit_seconds / 60)}{" "}
-              minutes to complete the test
+              • Internet aloqangiz barqaror ekanligiga ishonch hosil qiling
             </li>
-            <li>• Your progress will be auto-saved</li>
-            <li>• You can attempt this test {test.max_attempts} time(s)</li>
+            <li>
+              • Testni yakunlash uchun{" "}
+              {Math.round(test.time_limit_seconds / 60)} daqiqa vaqtingiz bor
+            </li>
+            <li>• Jarayoningiz avtomatik saqlanadi</li>
+            <li>
+              • Bu testni {test.max_attempts} marta topshirishingiz mumkin
+            </li>
           </ul>
         </div>
 
         <form action={startAttemptAction}>
           <input type="hidden" name="test_id" value={test.id} />
           <Button type="submit" variant="primary" size="lg" fullWidth>
-            Start Test Now
+            Testni boshlash
           </Button>
         </form>
       </Card>

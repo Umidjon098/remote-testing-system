@@ -24,15 +24,15 @@ export default async function StudentLayout({
           </Logo>
         }
         navigation={[
-          { label: "Tests", href: "/student/tests" },
+          { label: "Testlar", href: "/student/tests" },
           { label: "Musobaqalar", href: "/student/competitions" },
-          { label: "Results", href: "/student/results" },
+          { label: "Natijalar", href: "/student/results" },
         ]}
         actions={
           <>
             <Link href="/logout">
               <Button variant="ghost" size="sm">
-                Logout
+                Chiqish
               </Button>
             </Link>
           </>

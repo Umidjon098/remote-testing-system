@@ -35,12 +35,12 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
         <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
           <div className="text-center mb-6">
             <h1 className="text-2xl font-bold text-slate-900 mb-2">
-              {mode === "signin" ? "Welcome Back" : "Create Account"}
+              {mode === "signin" ? "Xush kelibsiz" : "Ro'yxatdan o'tish"}
             </h1>
             <p className="text-slate-600">
               {mode === "signin"
-                ? "Sign in to continue your learning journey"
-                : "Join thousands of students achieving their goals"}
+                ? "Ta'lim sayohatingizni davom ettirish uchun kiring"
+                : "Maqsadlaringizga erishayotgan minglab talabalar qatoriga qo'shiling"}
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
               onClick={() => setMode("signin")}
               disabled={pending}
             >
-              Sign In
+              Kirish
             </button>
             <button
               type="button"
@@ -68,7 +68,7 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
               onClick={() => setMode("signup")}
               disabled={pending}
             >
-              Sign Up
+              Ro'yxatdan o'tish
             </button>
           </div>
 
@@ -84,8 +84,8 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
             <Input
               name="email"
               type="email"
-              label="Email Address"
-              placeholder="you@example.com"
+              label="Email manzil"
+              placeholder="sizning@email.com"
               required
               disabled={pending}
             />
@@ -93,12 +93,14 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
             <Input
               name="password"
               type="password"
-              label="Password"
-              placeholder="Enter your password"
+              label="Parol"
+              placeholder="Parolingizni kiriting"
               required
               disabled={pending}
               helperText={
-                mode === "signup" ? "Must be at least 8 characters" : undefined
+                mode === "signup"
+                  ? "Kamida 8 ta belgi bo'lishi kerak"
+                  : undefined
               }
             />
 
@@ -110,10 +112,10 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
               disabled={pending}
             >
               {pending
-                ? "Processing..."
+                ? "Yuklanmoqda..."
                 : mode === "signin"
-                ? "Sign In"
-                : "Create Account"}
+                ? "Kirish"
+                : "Ro'yxatdan o'tish"}
             </Button>
           </form>
 
@@ -123,7 +125,7 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
                 type="button"
                 className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
               >
-                Forgot your password?
+                Parolni unutdingizmi?
               </button>
             </div>
           )}
@@ -133,24 +135,24 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
         <p className="mt-6 text-center text-sm text-slate-600">
           {mode === "signin" ? (
             <>
-              Don&apos;t have an account?{" "}
+              Hisobingiz yo&apos;qmi?{" "}
               <button
                 type="button"
                 onClick={() => setMode("signup")}
                 className="text-indigo-600 hover:text-indigo-700 font-medium"
               >
-                Sign up free
+                Ro&apos;yxatdan o&apos;ting
               </button>
             </>
           ) : (
             <>
-              Already have an account?{" "}
+              Hisobingiz bormi?{" "}
               <button
                 type="button"
                 onClick={() => setMode("signin")}
                 className="text-indigo-600 hover:text-indigo-700 font-medium"
               >
-                Sign in
+                Kirish
               </button>
             </>
           )}
