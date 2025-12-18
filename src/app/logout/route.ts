@@ -20,9 +20,18 @@ function getRequestOrigin(request: Request) {
 }
 
 export async function GET(request: Request) {
+  // IMPORTANT:
+  // GET must be side-effect free because Next.js can prefetch links in the viewport.
+  // If GET signs out, users will get logged out “randomly” in production.
+  return NextResponse.redirect(new URL("/login", getRequestOrigin(request)));
+}
+
+export async function POST(request: Request) {
   const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
   // IMPORTANT: use the public origin (proxy headers) to avoid cross-origin redirects
   // on platforms like Netlify where request.url may contain an internal/branch host.
-  return NextResponse.redirect(new URL("/login", getRequestOrigin(request)));
+  return NextResponse.redirect(new URL("/login", getRequestOrigin(request)), {
+    status: 303,
+  });
 }

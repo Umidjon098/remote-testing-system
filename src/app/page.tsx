@@ -25,11 +25,11 @@ export default async function Home() {
               </Button>
             </Link>
           ) : (
-            <Link href="/logout">
-              <Button variant="ghost" size="md">
+            <form action="/logout" method="post">
+              <Button type="submit" variant="ghost" size="md">
                 Chiqish
               </Button>
-            </Link>
+            </form>
           )}
         </nav>
 

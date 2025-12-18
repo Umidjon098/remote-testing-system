@@ -30,11 +30,11 @@ export default async function StudentLayout({
         ]}
         actions={
           <>
-            <Link href="/logout">
-              <Button variant="ghost" size="sm">
+            <form action="/logout" method="post">
+              <Button type="submit" variant="ghost" size="sm">
                 Chiqish
               </Button>
-            </Link>
+            </form>
           </>
         }
       />
