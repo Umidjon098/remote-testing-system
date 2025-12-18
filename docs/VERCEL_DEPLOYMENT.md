@@ -22,6 +22,10 @@ Supabase dashboard-da:
 3. **Redirect URLs** ga quyidagilarni qo'shing:
    - `https://your-app.vercel.app/**`
    - `http://localhost:3000/**` (local development uchun)
+4. **Authentication -> Settings** bo'limida:
+   - **JWT Expiry**: `3600` (1 soat) yoki `604800` (1 hafta) ga sozlang
+   - **Refresh Token Rotation**: Enabled bo'lsin
+   - **Reuse Interval**: `10` (soniya)
 
 ### 3. Cookie Settings
 
@@ -30,7 +34,9 @@ Loyihada quyidagi cookie sozlamalari qo'llanilgan:
 - **SameSite**: `lax` - Cross-site so'rovlar uchun
 - **Secure**: Production-da `true` (HTTPS uchun)
 - **Path**: `/` - Barcha yo'llar uchun
+- **MaxAge**: `604800` (7 kun) - Cookie muddati
 - **HttpOnly**: Supabase tomonidan avtomatik sozlanadi
+- **Auto Token Refresh**: Client-side har 30 daqiqada tekshiriladi
 
 ### 4. Deploy
 
@@ -83,6 +89,15 @@ git push origin main
 ### Issue: Infinite redirect loop
 
 **Solution**: Supabase Redirect URLs to'g'ri sozlanganini va Site URL Vercel URL bilan mos kelishini tekshiring.
+
+### Issue: Cookie tezda o'chib ketayapti
+
+**Solution**:
+
+1. Supabase Dashboard -> Authentication -> Settings -> JWT Expiry-ni oshiring (604800 = 1 hafta)
+2. Browser Developer Tools -> Application -> Cookies-da cookie-larning `Max-Age` va `Expires` qiymatlarini tekshiring
+3. `AuthProvider` component qo'shilganini va ishlayotganini tekshiring
+4. Browser-da "Block third-party cookies" o'chirilganini tekshiring
 
 ### Issue: CORS errors
 

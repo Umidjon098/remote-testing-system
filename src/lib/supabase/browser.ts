@@ -22,9 +22,9 @@ export function createSupabaseBrowserClient() {
       set(name: string, value: string, options: any) {
         let cookie = `${name}=${encodeURIComponent(value)}`;
 
-        if (options?.maxAge) {
-          cookie += `; max-age=${options.maxAge}`;
-        }
+        const maxAge = options?.maxAge ?? 60 * 60 * 24 * 7; // 7 days default
+        cookie += `; max-age=${maxAge}`;
+
         if (options?.path) {
           cookie += `; path=${options.path}`;
         }
