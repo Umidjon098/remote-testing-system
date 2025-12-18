@@ -52,7 +52,7 @@ export default async function AdminTestDetailPage({
               Test topilmadi
             </h2>
             <p className="text-slate-600 mb-6">
-              Bu test mavjud emas yoki o'chirib yuborilgan.
+              Bu test mavjud emas yoki o&apos;chirib yuborilgan.
             </p>
             <Link href="/admin/tests">
               <Button variant="primary">Testlarga qaytish</Button>
@@ -214,13 +214,13 @@ export default async function AdminTestDetailPage({
                 Testni nashr qilish
               </label>
               <p className="text-sm text-slate-600">
-                Bu testni o'quvchilarga ko'rinadigan qiling
+                Bu testni o&apos;quvchilarga ko&apos;rinadigan qiling
               </p>
             </div>
           </div>
 
           <Button type="submit" variant="primary" size="lg">
-            O'zgarishlarni saqlash
+            O&apos;zgarishlarni saqlash
           </Button>
         </form>
       </Card>
@@ -259,7 +259,7 @@ export default async function AdminTestDetailPage({
                   d="M12 4v16m8-8H4"
                 />
               </svg>
-              Savol qo'shish
+              Savol qo&apos;shish
             </Button>
           </form>
         </div>
@@ -313,7 +313,7 @@ export default async function AdminTestDetailPage({
                     </h4>
                     {selected && (
                       <Badge variant="success" size="sm">
-                        ✓ To'g'ri javob belgilangan
+                        ✓ To&apos;g&apos;ri javob belgilangan
                       </Badge>
                     )}
                   </div>
@@ -373,10 +373,10 @@ export default async function AdminTestDetailPage({
                                       d="M5 13l4 4L19 7"
                                     />
                                   </svg>
-                                  To'g'ri
+                                  To&apos;g&apos;ri
                                 </>
                               ) : (
-                                "To'g'ri deb belgilash"
+                                "To&apos;g&apos;ri deb belgilash"
                               )}
                             </Button>
                           </form>
@@ -428,8 +428,8 @@ export default async function AdminTestDetailPage({
                           />
                         </svg>
                         <p className="text-sm">
-                          Hali variantlar yo'q. Quyidagi formadan birinchi
-                          variantni qo'shing.
+                          Hali variantlar yo&apos;q. Quyidagi formadan birinchi
+                          variantni qo&apos;shing.
                         </p>
                       </div>
                     )}
@@ -458,7 +458,7 @@ export default async function AdminTestDetailPage({
                           d="M12 4v16m8-8H4"
                         />
                       </svg>
-                      Variant qo'shish
+                      Variant qo&apos;shish
                     </Button>
                   </form>
                 </div>
@@ -485,11 +485,11 @@ export default async function AdminTestDetailPage({
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                  Hali savollar yo'q
+                  Hali savollar yo&apos;q
                 </h3>
                 <p className="text-slate-600">
                   Boshlash uchun yuqoridagi formadan birinchi savolingizni
-                  qo'shing.
+                  qo&apos;shing.
                 </p>
               </div>
             </Card>

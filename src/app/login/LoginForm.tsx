@@ -68,7 +68,7 @@ export default function LoginForm({ nextPath }: { nextPath: string }) {
               onClick={() => setMode("signup")}
               disabled={pending}
             >
-              Ro'yxatdan o'tish
+              Ro&apos;yxatdan o&apos;tish
             </button>
           </div>
 

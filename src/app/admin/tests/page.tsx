@@ -145,7 +145,7 @@ export default async function AdminTestsPage({
                       <form action={deleteTestAction}>
                         <input type="hidden" name="test_id" value={t.id} />
                         <Button type="submit" variant="danger" size="sm">
-                          O'chirish
+                          O&apos;chirish
                         </Button>
                       </form>
                     </div>

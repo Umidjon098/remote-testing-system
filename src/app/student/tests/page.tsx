@@ -34,7 +34,7 @@ export default async function StudentTestsPage() {
           Barcha testlar
         </Badge>
         <Badge variant="default" className="cursor-pointer hover:bg-slate-200">
-          So'nggi
+          So&apos;nggi
         </Badge>
         <Badge variant="default" className="cursor-pointer hover:bg-slate-200">
           Mashhur

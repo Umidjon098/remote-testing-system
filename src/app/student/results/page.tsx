@@ -55,7 +55,7 @@ export default async function StudentResultsPage() {
                   )}
                   {a.status === "expired" && (
                     <Badge variant="danger" size="sm">
-                      Muddati o'tgan
+                      Muddati o&apos;tgan
                     </Badge>
                   )}
                 </div>
@@ -99,13 +99,13 @@ export default async function StudentResultsPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                Hali urinishlar yo'q
+                Hali urinishlar yo&apos;q
               </h3>
               <p className="text-slate-600 mb-6">
-                Natijalaringizni ko'rish uchun testlarni yechishni boshlang
+                Natijalaringizni ko&apos;rish uchun testlarni yechishni boshlang
               </p>
               <Link href="/student/tests">
-                <Button variant="primary">Testlarni ko'rish</Button>
+                <Button variant="primary">Testlarni ko&apos;rish</Button>
               </Link>
             </div>
           </Card>

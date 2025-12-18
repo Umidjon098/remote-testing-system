@@ -38,18 +38,18 @@ export default async function Home() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-6">
                 <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
-                Dunyo bo'ylab 10,000+ talaba ishonadi
+                Dunyo bo&apos;ylab 10,000+ talaba ishonadi
               </div>
 
               <h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-                Testlaringizni o'zlashtirasiz,
+                Testlaringizni o&apos;zlashtirasiz,
                 <br />
                 <span className="text-indigo-600">Mukammallikka erishing</span>
               </h1>
 
               <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
-                Talabalar va ta'lim muassasalari uchun mo'ljallangan aqlli,
-                ishonchli platforma. Testlarni ishonch bilan topshiring,
+                Talabalar va ta&apos;lim muassasalari uchun mo&apos;ljallangan
+                aqlli, ishonchli platforma. Testlarni ishonch bilan topshiring,
                 rivojlanishingizni kuzating va maqsadlaringizga erishing.
               </p>
 
@@ -60,7 +60,7 @@ export default async function Home() {
                   </Button>
                 </Link>
                 <Button variant="outline" size="lg" className="min-w-50">
-                  Demo ko'rish
+                  Demo ko&apos;rish
                 </Button>
               </div>
 
@@ -86,7 +86,7 @@ export default async function Home() {
                     Oson test yechish
                   </h3>
                   <p className="text-slate-600">
-                    Diqqat va samaradorlik uchun toza, chalg'itmaydigan
+                    Diqqat va samaradorlik uchun toza, chalg&apos;itmaydigan
                     interfeys
                   </p>
                 </div>
@@ -111,8 +111,8 @@ export default async function Home() {
                     Vaqt nazorati
                   </h3>
                   <p className="text-slate-600">
-                    Real vaqtda taymer va jarayon kuzatuvi sizni o'z tempoizda
-                    ushlab turadi
+                    Real vaqtda taymer va jarayon kuzatuvi sizni o&apos;z
+                    tempoizda ushlab turadi
                   </p>
                 </div>
 

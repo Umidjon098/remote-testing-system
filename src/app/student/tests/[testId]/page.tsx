@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { startAttemptAction } from "./actions";
-import { Button, Card, Badge } from "@/components/ui";
+import { Button, Card } from "@/components/ui";
 
 export default async function StudentTestDetailPage({
   params,
