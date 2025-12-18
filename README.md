@@ -6,6 +6,19 @@ Next.js (App Router) + Supabase MVP for learning centers:
 - Students take tests with timer + auto-submit.
 - Results are stored and viewable (student: own, admin: all).
 
+## 🚨 Production Deployment Issues?
+
+**Cookie o'chib ketayaptimi?**
+
+1. **Tezkor hal qilish**: [docs/QUICK_FIX.md](docs/QUICK_FIX.md) ⚡
+2. **Batafsil**: [docs/SUPABASE_COOKIE_FIX.md](docs/SUPABASE_COOKIE_FIX.md) 📖
+3. **Deployment**: [docs/VERCEL_DEPLOYMENT.md](docs/VERCEL_DEPLOYMENT.md) 🚀
+
+**Production URLs:**
+
+- Vercel: https://remote-testing-system.vercel.app
+- Netlify: https://remote-testing-system.netlify.app
+
 ## Setup
 
 ### 1) Supabase
@@ -49,4 +62,5 @@ Open:
 - `docs/openapi.yaml`
 - `docs/admin_manual.md`
 - `docs/student_user_guide.md`
+
 # remote-testing-system

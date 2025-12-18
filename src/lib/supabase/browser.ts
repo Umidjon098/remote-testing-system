@@ -11,34 +11,49 @@ export function createSupabaseBrowserClient() {
   }
 
   return createBrowserClient(url, anonKey, {
+    auth: {
+      flowType: "pkce",
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+      persistSession: true,
+    },
     cookies: {
-      get(name: string) {
-        const value = document.cookie
+      getAll() {
+        if (typeof document === "undefined") return [];
+        return document.cookie
           .split("; ")
-          .find((row) => row.startsWith(`${name}=`))
-          ?.split("=")[1];
-        return value ? decodeURIComponent(value) : null;
+          .filter((cookie) => cookie.length > 0)
+          .map((cookie) => {
+            const [name, ...rest] = cookie.split("=");
+            const value = rest.join("=");
+            return { name, value };
+          });
       },
-      set(name: string, value: string, options: any) {
-        let cookie = `${name}=${encodeURIComponent(value)}`;
+      setAll(cookiesToSet) {
+        cookiesToSet.forEach(({ name, value, options }) => {
+          if (typeof document === "undefined") return;
 
-        const maxAge = options?.maxAge ?? 60 * 60 * 24 * 7; // 7 days default
-        cookie += `; max-age=${maxAge}`;
+          let cookie = `${name}=${encodeURIComponent(value)}`;
 
-        if (options?.path) {
-          cookie += `; path=${options.path}`;
-        }
-        if (options?.sameSite) {
-          cookie += `; samesite=${options.sameSite}`;
-        }
-        if (options?.secure) {
-          cookie += `; secure`;
-        }
+          const maxAge = options?.maxAge ?? 60 * 60 * 24 * 7; // 7 days default
+          cookie += `; max-age=${maxAge}`;
+          cookie += `; path=${options?.path || "/"}`;
+          cookie += `; samesite=${options?.sameSite || "lax"}`;
 
-        document.cookie = cookie;
-      },
-      remove(name: string, options: any) {
-        document.cookie = `${name}=; path=${options?.path || "/"}; max-age=0`;
+          // Always set secure in production or if explicitly requested
+          if (
+            options?.secure ||
+            (typeof window !== "undefined" &&
+              window.location.protocol === "https:")
+          ) {
+            cookie += `; secure`;
+          }
+
+          // Don't set domain - let browser handle it automatically
+          // This works better with Vercel/Netlify subdomains
+
+          document.cookie = cookie;
+        });
       },
     },
   });
