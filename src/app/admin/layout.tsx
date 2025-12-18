@@ -25,6 +25,7 @@ export default async function AdminLayout({
         }
         navigation={[
           { label: "Tests", href: "/admin/tests" },
+          { label: "Musobaqalar", href: "/admin/competitions" },
           { label: "Results", href: "/admin/results" },
         ]}
         actions={

@@ -25,6 +25,7 @@ export default async function StudentLayout({
         }
         navigation={[
           { label: "Tests", href: "/student/tests" },
+          { label: "Musobaqalar", href: "/student/competitions" },
           { label: "Results", href: "/student/results" },
           { label: "Attempts", href: "/student/attempts" },
         ]}
